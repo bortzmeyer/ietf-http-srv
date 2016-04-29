@@ -25,7 +25,8 @@ The issues
 
 * URL with an explicit port: who wins?
 * latency issues: SRV and A/AAAA requests will have to be done in
-  parallel (happy eyeballs)
+  parallel (happy eyeballs). This does not solve the problem of the second A/AAAA request,
+  the one on the target, for which one must wait the response to the SRV request.
 * broken middleboxes
 * apparent complete lack of interest from browser vendors
 * increase of DNS requests (probably negligible when you think of all
