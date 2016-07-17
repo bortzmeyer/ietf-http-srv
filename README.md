@@ -1,7 +1,7 @@
 Using DNS SRV records with HTTP
 ===============================
 
-These are some notes I keep for a vague et very remote project of
+These are some notes I keep for a vague and very remote project of
 submitting an IETF Internet-Draft on "Using SRV records for HTTP". *Do
 not hold your breath* I have many things to do and this specific
 project seems very unlikeley to succeed one day. I just store notes in
@@ -32,13 +32,17 @@ The issues
 * increase of DNS requests (probably negligible when you think of all
   the DNS requests needed for the simplest Web page)
 * subtle DNS issues with caching?
-  
+* when there are several HTTP connections to the same target, should every SRV lookup be treated separately (default randomization) or should all connections go to the same host?
+* transition issues: what should the browsers do during the deployment?
+
 The Mark Andrews draft
 ----------------------
 
 [draft-andrews-http-srv](https://datatracker.ietf.org/doc/draft-andrews-http-srv/)
 
-TODO: read it
+* requests the HTTP client to do all connections of a "session" to the same host (not the default working of SRV)
+* disable SRV use if there is an explicit port in the URI
+* very optimistic about deployment ("within one to two years")
 
 The HTTP/2 project
 ------------------
@@ -52,6 +56,6 @@ CNAME and other data
 --------------------
 
 Explain in detail why CNAME is not a solution?
-([old issue](https://chriswa.wordpress.com/2008/02/01/bind9-vs-cname-rrs/))
+([old issue](https://chriswa.wordpress.com/2008/02/01/bind9-vs-cname-rrs/)) Among other things, they are  not protocol-specific so a CNAME "swallows" everything.
 
 
