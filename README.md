@@ -34,6 +34,7 @@ The issues
 * subtle DNS issues with caching?
 * when there are several HTTP connections to the same target, should every SRV lookup be treated separately (default randomization) or should all connections go to the same host?
 * transition issues: what should the browsers do during the deployment?
+* most current name resolution APIs take a domain name and return an address. No way to make that work with SRV, we need new APIs and patch applications to use them.
 
 The Mark Andrews draft
 ----------------------
