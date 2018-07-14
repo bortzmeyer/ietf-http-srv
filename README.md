@@ -26,15 +26,21 @@ The issues
 * URL with an explicit port: who wins?
 * latency issues: SRV and A/AAAA requests will have to be done in
   parallel (happy eyeballs). This does not solve the problem of the second A/AAAA request,
-  the one on the target, for which one must wait the response to the SRV request.
+  the one on the target, for which one must wait the response to the
+  SRV request. (Except if in the same zone.)
 * broken middleboxes
 * apparent complete lack of interest from browser vendors
 * increase of DNS requests (probably negligible when you think of all
-  the DNS requests needed for the simplest Web page)
+  the DNS requests needed for the simplest Web page). If both names
+  are in the same zone, returning more additional
+  data may help. (Except for non-existing names, where the client
+  cannot know if the server did not send the data or if the data did
+  not exist.)
 * subtle DNS issues with caching?
 * when there are several HTTP connections to the same target, should every SRV lookup be treated separately (default randomization) or should all connections go to the same host?
 * transition issues: what should the browsers do during the deployment?
 * most current name resolution APIs take a domain name and return an address. No way to make that work with SRV, we need new APIs and patch applications to use them.
+* wildcards may, as usual, create problems, since `_something._tcp.*.example.com` is not "wildcarded"
 
 The Mark Andrews draft
 ----------------------
