@@ -26,10 +26,14 @@ Using SRV records would help a lot for:
 ## The issues
 
 (Note: not all HTTP clients are Web browsers. But browsers have a
-stron influence and, because there are few of them, there is hope to
+strong influence and, because there are few of them, there is hope to
 convince them all.)
 
 * URL with an explicit port: who wins?
+* Mentioning an "alternative" port in the SRV record may create
+  trouble with HTTP security model (see RFC 6454 on the concept of
+  origin; `http://example.com/` and `http://example.com:3000/` are
+  different origins).
 * latency issues: SRV and A/AAAA requests will have to be done in
   parallel (happy eyeballs). This does not solve the problem of the second A/AAAA request,
   the one on the target, for which one must wait the response to the
